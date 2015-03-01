@@ -1,0 +1,5 @@
+griffon.plugins.hessian
+griffon.plugins.hessian.exceptions
+griffon.transform
+org.codehaus.griffon.runtime.hessian
+org.codehaus.griffon.runtime.jmx
