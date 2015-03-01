@@ -1,0 +1,94 @@
+
+[[_Usage]]
+= Usage
+
+The following sections describe how you may use this plugin in an project.
+
+== Configuration
+
+The plugin's <<_modules, module>> registers a pair of helper classes (`{api_hessian_handler}` and `{api_burlap_handler}`) 
+that define the base contract for issuing Hessian or Burlap calls using an appropriate client class. These helper classes
+have the following methods
+
+[source,java,options="nowrap"]
+.griffon.plugins.hessian.HessianHandler.java
+----
+include::{path_griffon_hessian_core}/src/main/java//griffon/plugins/hessian/HessianHandler.java[tags=methods,indent=0]
+----
+
+[source,java,options="nowrap"]
+.griffon.plugins.hessian.BurlapHandler.java
+----
+include::{path_griffon_hessian_core}/src/main/java//griffon/plugins/hessian/BurlapHandler.java[tags=methods,indent=0]
+----
+
+These methods will create a new client when invoked unless you define an `id:` attribute. When this attribute is supplied
+the client will be stored in a cache managed by their respective storage classes (`{api_hessianclient_storage}`, 
+`{api_burlapclient_storage}`).
+
+You can inject an instance of `{api_hessian_handler}` and/or `{api_burlap_handler}` anywhere they're needed using
+`@Inject`. There are two callbacks you may use with these handlers: either you work with a `{api_hessianclient}`
+instance using `{api_hessianclient_callback}` or with a `{api_burlapclient}` instance using `{api_burlapclient_callback}`.
+Both options will come in handy with other plugins or APIs that require one instance or the other.
+
+Both callbacks are defined using a functional interface approach, which means you can apply lambda expressions if running
+with JDK8+ or closures if running Groovy.
+
+[source,java,options="nowrap"]
+.griffon.plugins.hessian.HessianCallback.java
+----
+include::{path_griffon_hessian_core}/src/main/java/griffon/plugins/hessian/HessianClientCallback.java[lines=27..-1]
+----
+
+[source,java,options="nowrap"]
+.griffon.plugins.hessian.BurlapClientCallback.java
+----
+include::{path_griffon_hessian_core}/src/main/java/griffon/plugins/hessian/BurlapClientCallback.java[lines=27..-1]
+----
+
+== Example
+
+The following is a trivial usage of the `{api_hessian_handler}` inside a service
+
+[source,java,options="nowrap"]
+.HessianCalculatorService.java
+----
+include::{path_griffon_hessian_core}/src/test/groovy/griffon/plugins/hessian/HessianCalculatorService.java[lines=18..-1]
+----
+
+Here's the Groovy version of the same service
+
+[source,groovy,options="nowrap"]
+.GroovyHessianCalculatorService.groovy
+----
+include::{path_griffon_hessian_core}/src/test/groovy/griffon/plugins/hessian/GroovyHessianCalculatorService.groovy[lines=18..-1]
+----
+
+The Java based, Burlap version of the same service looks like
+
+[source,java,options="nowrap"]
+.BurlapCalculatorService.java
+----
+include::{path_griffon_hessian_core}/src/test/groovy/griffon/plugins/hessian/BurlapCalculatorService.java[lines=18..-1]
+----
+
+and the Groovy version of the same service
+
+[source,groovy,options="nowrap"]
+.GroovyBurlapCalculatorService.groovy
+----
+include::{path_griffon_hessian_core}/src/test/groovy/griffon/plugins/hessian/GroovyBurlapCalculatorService.groovy[lines=18..-1]
+----
+
+== AST Transformation
+
+You can apply the `{api_hessian_aware}` and/or `{api_burlap_aware}` AST transformations on any class. They inject the
+behavior of `{api_hessian_handler}` and `{api_burlap_handler}` into said class.
+
+== DSL Descriptors
+
+This plugin provides DSL descriptors for Intellij IDEA and Eclipse (provided you have the Groovy Eclipse plugin installed).
+These descriptors are found inside the `griffon-hessian-groovy-compile-{project-version}.jar`, with locations
+
+ * dsdl/griffon_hessian.dsld
+ * gdsl/griffon_hessian.gdsl

@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+apply plugin: 'org.codehaus.griffon.griffon'
+
+griffon {
+    disableDependencyResolution = false
+    includeGroovyDependencies = false
+    version = rootProject.griffonVersion
+}
+
+apply from: rootProject.file('gradle/code-coverage.gradle')
+
+dependencies {
+    compile 'org.codehaus.griffon.plugins:griffon-monitor-core:1.1.0'
+
+    compile('com.caucho:hessian:4.0.38')
+
+    testCompile 'com.jayway.awaitility:awaitility-groovy:1.6.3'
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.1'
+
+    testRuntime 'org.slf4j:slf4j-simple:1.7.10'
+    testRuntime "org.codehaus.griffon:griffon-guice:${griffonVersion}"
+
+    testCompileOnly "org.codehaus.griffon:griffon-groovy-compile:${griffonVersion}"
+    testCompileOnly 'org.apache.ant:ant:1.9.4'
+
+    testCompile "org.eclipse.jetty:jetty-server:${jettyVersion}"
+    testCompile "org.eclipse.jetty:jetty-servlet:${jettyVersion}"
+}
+
+compileGroovy.enabled = false

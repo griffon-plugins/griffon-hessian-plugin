@@ -1,0 +1,7 @@
+
+[[_introduction]]
+= Introduction
+
+This plugin enables the usage of the Hessian and Burlap transfer protocols by
+link:http://hessian.caucho.com/[Caucho Technology, Inc., window="_blank"] on a Griffon application.
+

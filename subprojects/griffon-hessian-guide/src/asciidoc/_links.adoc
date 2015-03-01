@@ -1,0 +1,17 @@
+
+:link_hessian: link:https://github.com/jwagenleitner/groovy-hessian[groovy-hessian, window="_blank"]
+
+:api_hessian_handler: link:api/griffon/plugins/hessian/HessianHandler.html[HessianHandler, window="_blank"]
+:api_burlap_handler: link:api/griffon/plugins/hessian/BurlapHandler.html[BurlapHandler, window="_blank"]
+:api_hessianclient: link:api/griffon/plugins/hessian/HessianClient.html[HessianClient, window="_blank"]
+:api_burlapclient: link:api/griffon/plugins/hessian/BurlapClient.html[BurlapClient, window="_blank"]
+:api_hessianclient_callback: link:api/griffon/plugins/hessian/HessianClientCallback.html[HessianClientCallback, window="_blank"]
+:api_burlapclient_callback: link:api/griffon/plugins/hessian/BurlapClientCallback.html[BurlapClientCallback, window="_blank"]
+:api_hessianclient_storage: link:api/griffon/plugins/hessian/HessianClientStorage.html[HessianClientStorage, window="_blank"]
+:api_burlapclient_storage: link:api/griffon/plugins/hessian/BurlapClientStorage.html[BurlapClientStorage, window="_blank"]
+:api_hessian_aware: link:api/griffon/transform/HessianAware.html[@HessianAware, window="_blank"]
+:api_burlap_aware: link:api/griffon/transform/BurlapAware.html[@BurlapAware, window="_blank"]
+
+:path_griffon_hessian_core: {rootdir}/subprojects/griffon-hessian-core
+:path_griffon_hessian_groovy_compile: {rootdir}/subprojects/griffon-hessian-groovy-compile
+
