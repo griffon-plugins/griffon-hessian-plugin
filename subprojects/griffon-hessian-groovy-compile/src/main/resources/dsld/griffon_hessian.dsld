@@ -24,12 +24,12 @@ import org.codehaus.groovy.ast.expr.MethodCallExpression
 
 supportsVersion(groovyEclipse: '2.5.1')
 
-contribute(enclosingClass(annotatedBy('griffon.transform.HessianAware'))) {
+contribute(enclosingClass(annotatedBy('griffon.transform.hessian.HessianAware'))) {
     provider = 'griffon-hessian'
     delegatesTo 'griffon.plugins.hessian.HessianHandler'
 }
 
-contribute(enclosingClass(annotatedBy('griffon.transform.BurlapAware'))) {
+contribute(enclosingClass(annotatedBy('griffon.transform.hessian.BurlapAware'))) {
     provider = 'griffon-hessian'
     delegatesTo 'griffon.plugins.hessian.BurlapHandler'
 }

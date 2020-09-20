@@ -37,13 +37,13 @@ with JDK8+ or closures if running Groovy.
 [source,java,options="nowrap"]
 .griffon.plugins.hessian.HessianCallback.java
 ----
-include::{path_griffon_hessian_core}/src/main/java/griffon/plugins/hessian/HessianClientCallback.java[lines=27..-1]
+include::{path_griffon_hessian_core}/src/main/java/griffon/plugins/hessian/HessianClientCallback.java[lines=29..-1]
 ----
 
 [source,java,options="nowrap"]
 .griffon.plugins.hessian.BurlapClientCallback.java
 ----
-include::{path_griffon_hessian_core}/src/main/java/griffon/plugins/hessian/BurlapClientCallback.java[lines=27..-1]
+include::{path_griffon_hessian_core}/src/main/java/griffon/plugins/hessian/BurlapClientCallback.java[lines=29..-1]
 ----
 
 == Example

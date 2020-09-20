@@ -1,11 +1,13 @@
 /*
- * Copyright 2014-2017 the original author or authors.
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Copyright 2014-2020 The author and/or original authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,19 +18,19 @@
 package org.codehaus.griffon.runtime.hessian;
 
 import com.caucho.burlap.client.BurlapProxyFactory;
+import griffon.annotations.core.Nonnull;
 import griffon.plugins.hessian.BurlapClient;
-import griffon.plugins.hessian.UnaryConsumer;
 import griffon.plugins.hessian.exceptions.BurlapException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
 import java.net.MalformedURLException;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 
 import static griffon.util.GriffonNameUtils.requireNonBlank;
 import static java.util.Collections.unmodifiableMap;
@@ -53,11 +55,11 @@ public class DefaultBurlapClient implements BurlapClient {
     }
 
     @Override
-    public <T, R> R proxy(@Nonnull Class<T> proxyClass, @Nonnull UnaryConsumer<T, R> consumer) {
+    public <T, R> R proxy(@Nonnull Class<T> proxyClass, @Nonnull Function<T, R> consumer) {
         requireNonNull(proxyClass, "Argument 'proxyClass' must not be null");
         String proxyClassName = proxyClass.getName();
         LOG.debug("Invoking burlap consumer on proxy {}", proxyClassName);
-        return consumer.consume(proxyClass.cast(locateProxy(proxyClass)));
+        return consumer.apply(proxyClass.cast(locateProxy(proxyClass)));
     }
 
     @Override

@@ -1,11 +1,13 @@
 /*
- * Copyright 2014-2017 the original author or authors.
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Copyright 2014-2020 The author and/or original authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,13 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.codehaus.griffon.runtime.jmx;
+package org.codehaus.griffon.runtime.hessian.monitor;
 
+import griffon.annotations.core.Nonnull;
 import griffon.core.env.Metadata;
-import griffon.plugins.hessian.HessianClient;
+import griffon.plugins.hessian.BurlapClient;
 import org.codehaus.griffon.runtime.monitor.AbstractMBeanRegistration;
 
-import javax.annotation.Nonnull;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import java.util.Map;
@@ -29,11 +31,11 @@ import static java.util.Objects.requireNonNull;
 /**
  * @author Andres Almiray
  */
-public class HessianClientMonitor extends AbstractMBeanRegistration implements HessianClientMonitorMXBean {
-    private HessianClient delegate;
+public class BurlapClientMonitor extends AbstractMBeanRegistration implements BurlapClientMonitorMXBean {
+    private BurlapClient delegate;
     private final String name;
 
-    public HessianClientMonitor(@Nonnull Metadata metadata, @Nonnull HessianClient delegate, @Nonnull String name) {
+    public BurlapClientMonitor(@Nonnull Metadata metadata, @Nonnull BurlapClient delegate, @Nonnull String name) {
         super(metadata);
         this.delegate = requireNonNull(delegate, "Argument 'delegate' must not be null");
         this.name = name;
@@ -41,7 +43,7 @@ public class HessianClientMonitor extends AbstractMBeanRegistration implements H
 
     @Override
     public ObjectName preRegister(MBeanServer server, ObjectName name) throws Exception {
-        return new ObjectName("griffon.plugins.rmi:type=HessianClient,application=" + metadata.getApplicationName() + ",name=" + this.name);
+        return new ObjectName("griffon.plugins.rmi:type=BurlapClient,application=" + metadata.getApplicationName() + ",name=" + this.name);
     }
 
     @Override

@@ -1,11 +1,13 @@
 /*
- * Copyright 2014-2017 the original author or authors.
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Copyright 2014-2020 The author and/or original authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,27 +17,22 @@
  */
 package griffon.plugins.hessian;
 
-import griffon.core.GriffonApplication;
+import griffon.annotations.core.Nonnull;
+import griffon.annotations.core.Nullable;
 import griffon.core.artifact.GriffonService;
-import griffon.metadata.ArtifactProviderFor;
 import griffon.plugins.hessian.exceptions.HessianException;
 import griffon.util.CollectionUtils;
 import org.codehaus.griffon.runtime.core.artifact.AbstractGriffonService;
+import org.kordamp.jipsy.ServiceProviderFor;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.inject.Inject;
 import java.util.Map;
+import java.util.function.Function;
 
-@ArtifactProviderFor(GriffonService.class)
+@ServiceProviderFor(GriffonService.class)
 public class HessianCalculatorService extends AbstractGriffonService {
     @Inject
     private HessianHandler hessianHandler;
-
-    @Inject
-    public HessianCalculatorService(@Nonnull GriffonApplication application) {
-        super(application);
-    }
 
     public Double calculate(final double num1, final double num2) {
         Map<String, Object> params = CollectionUtils.<String, Object>map()
@@ -46,9 +43,9 @@ public class HessianCalculatorService extends AbstractGriffonService {
                 @Nullable
                 public Double handle(@Nonnull Map<String, Object> params, @Nonnull HessianClient client)
                     throws HessianException {
-                    return client.proxy(Calculator.class, new UnaryConsumer<Calculator, Double>() {
+                    return client.proxy(Calculator.class, new Function<Calculator, Double>() {
                         @Override
-                        public Double consume(Calculator calculator) {
+                        public Double apply(Calculator calculator) {
                             return calculator.add(num1, num2);
                         }
                     });

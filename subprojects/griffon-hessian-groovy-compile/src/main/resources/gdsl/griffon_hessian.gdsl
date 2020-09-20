@@ -20,10 +20,10 @@ import com.intellij.patterns.*
  * @author Andres Almiray
  */
 
-contributor(scope: annotatedScope(ctype: 'griffon.transform.HessianAware')) {
+contributor(scope: annotatedScope(ctype: 'griffon.transform.hessian.HessianAware')) {
     delegatesTo(findClass('griffon.plugins.hessian.HessianHandler'))
 }
 
-contributor(scope: annotatedScope(ctype: 'griffon.transform.BurlapAware')) {
+contributor(scope: annotatedScope(ctype: 'griffon.transform.hessian.BurlapAware')) {
     delegatesTo(findClass('griffon.plugins.hessian.BurlapHandler'))
 }
