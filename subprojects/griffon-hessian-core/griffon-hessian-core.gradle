@@ -31,9 +31,3 @@ dependencies {
     testImplementation "org.eclipse.jetty:jetty-server:${jettyVersion}"
     testImplementation "org.eclipse.jetty:jetty-servlet:${jettyVersion}"
 }
-
-jar {
-    manifest {
-        attributes('Automatic-Module-Name': project.group + '.hessian.core')
-    }
-}
